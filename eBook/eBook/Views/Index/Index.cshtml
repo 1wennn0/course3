@@ -1,0 +1,72 @@
+﻿@model eBook.Models.BookSearchArg
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>查詢畫面</h2>
+
+@using (Html.BeginForm("Index", "Index", FormMethod.Post, new { id = "Form1" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.BookName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BookClassName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.BookClassName, (List<SelectListItem>)ViewBag.BookClassNameItem, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BookBoughter, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.BookBoughter, (List<SelectListItem>)ViewBag.BookBoughterItem, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BookStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.BookStatus, (List<SelectListItem>)ViewBag.BookStatusItem, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <input type="submit" id="btnSearch" value="查詢" />
+    @Html.ActionLink("新增", "InsertBook")
+    <br />
+    if (ViewBag.BookSearchResult != null)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr id>
+                    <th>圖書類別</th>
+                    <th>書名</th>
+                    <th>購書日期</th>
+                    <th>借閱狀態</th>
+                    <th>借閱人</th>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<eBook.Models.BookSearchResult>)ViewBag.BookSearchResult)
+                {
+                    <tr id='@item.BookId'>
+                        <td>@item.BookName</td>
+                        <td>@item.BookClassName </td>
+                        <td>@item.BookBoughtDate</td>
+                        <td>@item.BookStatus</td>
+                        <td>@item.BookBoughter</td>
+                        <td>
+                            <a class="btnDelete" href="#" onclick="test(this,'@item.BookId');">刪除</a>
+                            <input class="hidEmployeeId" type="hidden" value='@item.BookId' />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

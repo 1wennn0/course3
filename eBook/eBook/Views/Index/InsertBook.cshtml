@@ -1,0 +1,54 @@
+﻿@model eBook.Models.AddBook
+
+@{
+    ViewBag.Title = "InsertBook";
+}
+
+<h2>新增畫面</h2>
+<div class="form-group">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BookName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookName, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.BookAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BookAuthor, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookAuthor, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.BookPublisher, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BookPublisher, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookPublisher, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.BookNote, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BookNote, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookNote, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.BookBoughtDate, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BookBoughtDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookBoughtDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.BookClassName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.BookClassName, (List<SelectListItem>)ViewBag.AddBookItem, "請選擇", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.BookClassName, "", new { @class = "text-danger" })
+    </div>
+</div>
+<input type="submit" id="btnSearch" value="新增" />
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
